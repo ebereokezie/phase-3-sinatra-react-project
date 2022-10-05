@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_10_05_001147) do
 
-  create_table "todos", force: :cascade do |t|
+  create_table "to_dos", force: :cascade do |t|
     t.string "body"
     t.string "day"
   end

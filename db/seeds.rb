@@ -22,11 +22,11 @@ ToDo.create([
     day: "Thursday"
   },
   {
-    body: "Wash the car"
+    body: "Wash the car",
     day: "Friday"
   },
   {
-    body: "Mow the Lawn"
+    body: "Mow the Lawn",
     day: "Saturday"
   }
 
