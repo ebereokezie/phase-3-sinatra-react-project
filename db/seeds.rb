@@ -1,35 +1,21 @@
 puts "🌱 Seeding spices..."
 
-ToDo.create([
-  {
-    body: "Take out the trash",
-    day: "Sunday"
-  },
-  {
-    body: "Feed the Dog",
-    day: "Monday"
-  },
-  {
-    body: "Wash the Dishes",
-    day: "Tuesday"
-  },
-  {
-    body: "Do the Laundry",
-    day: "Wednesday"
-  },
-  {
-    body: "Buy Groceries",
-    day: "Thursday"
-  },
-  {
-    body: "Wash the car",
-    day: "Friday"
-  },
-  {
-    body: "Mow the Lawn",
-    day: "Saturday"
-  }
+100.times do
 
-])
+  game = Game.create(
+    title: Faker::Game.title,
+    platform: Faker::Game.platform,
+    price: rand(0..50)
+  )
 
+  rand(1..10).times do
+
+    Review.create(
+      score: rand(1..10),
+      comment: Faker::Lorem.sentence,
+      game_id: game.id
+
+    )
+  end
+end
 puts "✅ Done seeding!"
