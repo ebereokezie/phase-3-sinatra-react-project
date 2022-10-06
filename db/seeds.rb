@@ -12,7 +12,6 @@ puts "🌱 Seeding spices..."
 
     Review.create(
       score: rand(1..10),
-      comment: Faker::Lorem.sentence,
       game_id: game.id
 
     )

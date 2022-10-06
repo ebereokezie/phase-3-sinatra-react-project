@@ -3,16 +3,12 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get '/games' do
-    games = Games.all
-    games.to_json
-end
-
-get '/games/:platform' do
-    games = Games.find(params[:platform])
+    games = Game.all
     games.to_json(only: [:id, :title, :platform, :price], include: {
-        reviews: {only: [:score, :comment]}
+        reviews: {only: [:score]}
     })
 end
+
 
 post '/games' do
     games = Game.create(
