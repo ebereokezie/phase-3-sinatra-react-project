@@ -7,29 +7,48 @@ class ApplicationController < Sinatra::Base
     games.to_json(only: [:id, :title, :platform, :price], include: {
         reviews: {only: [:score]}
     })
+
+
 end
 
 
 post '/games' do
     games = Game.create(
-        body: params[:body],
-        day: params[:day]
-    )
+        title: params[:title],
+        platform: params[:platform],
+        price: params[:price])
 
-   games.to_json
+     reviews=  Review.create(
+        score: params[:score],
+        game_id: params[:game_id])
+
+    games.reviews << reviews
+
+    
+   games.to_json(only: [:id, :title, :platform, :price], include: {
+        reviews: {only: [:score]}
+    })
+
 end
+
+
 
 patch '/games/:id' do
    games_body = Game.find(params[:id])
     games_body.update(
-        body: params[:body]
+        title: params[:title],
+        platform: params[:platform],
+        price: params[:price]
     )
 
-    games_body.to_json
+       
+ games_body.to_json(only: [:id, :title, :platform, :price], include: {
+    reviews: {only: [:score]}
+})
 end
 
 delete '/games/:id' do
-    message = Game.find(params[:id])
+    games = Game.find(params[:id])
     games.destroy
     games.to_json
 end
