@@ -31,7 +31,7 @@ post '/games' do
  
 end
 
-post '/review/:id' do
+post '/reviews/:id' do
     game = Game.find(params[:id])
 
    game.reviews.create(
@@ -43,7 +43,7 @@ post '/review/:id' do
 
 end
 
-patch '/games/:id' do
+patch '/game/:id' do
    games_body = Game.find(params[:id])
     games_body.update(
         title: params[:title],
@@ -57,7 +57,7 @@ patch '/games/:id' do
 })
 end
 
-delete '/games/:id' do
+delete '/game/:id' do
     games = Game.find(params[:id])
     games.destroy
     games.to_json
