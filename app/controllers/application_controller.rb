@@ -31,12 +31,16 @@ post '/games' do
  
 end
 
-post '/review' do
-   reviews=  Review.create(
-        score: params[:score],
-        game_id: params[:game_id])
+post '/review/:id' do
+    game = Game.find(params[:id])
 
-    reviews.to_json
+   game.reviews.create(
+        score: params[:score])
+
+    game.to_json(only: [:id, :title, :platform, :price], include: {
+        reviews: {only: [:score, :game_id]}
+    })
+
 end
 
 patch '/games/:id' do
