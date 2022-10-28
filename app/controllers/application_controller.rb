@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
 end
 
 
-post '/game' do
+post '/addGame' do
     games = Game.create(
         title: params[:title],
         platform: params[:platform],
